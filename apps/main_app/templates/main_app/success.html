@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Success</title>
+</head>
+<body>
+	<h1>Success!</h1>
+	<a href="{% url 'logout' %}">Log Out!</a>
+	<a href="{% url 'dashboard' %}">Home!</a>
+
+	<p>Destination: {{ plan.destination }}</p>
+	<p>Description: {{ plan.description }}</p>
+	<p>Start date: {{ plan.startdate }}</p>
+	<p>End date: {{ plan.enddate }}</p>
+
+	<h3>All people joined:</h3>
+	{% for joins in alljoins %}
+	<p>Name: {{ joins.name }}</p>
+	{% endfor %}
+</body>
+</html>

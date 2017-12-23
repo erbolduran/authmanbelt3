@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main App!</title>
+</head>
+<body>
+	<h1>Welcome {{ user.name }}!</h1>
+	<a href="{% url 'logout' %}">Log Out!</a>
+	<a href="{% url 'makeplans' %}">Make Plans!</a>
+
+	<h3>My Plans!</h3>
+	{% for each in others %}
+	{% if each.user.id == request.session.user_id %}
+	<form action="{% url 'join' %}" method="POST">
+		{% csrf_token %}
+		{{each.user.name}}: {{each.destination}}
+		<input type="hidden" name="plan_id" value="{{each.id}}">
+		<input type="submit" value="Ok!"></input>	
+	</form>
+	{% endif %}
+	{% endfor %}
+
+	{% for each in favs %}
+	{{ each.description }}:<a href="/main_app/success/{{each.id}}">{{ each.destination }}</a>
+	{% endfor %}
+	
+
+	<h3>Other's Plans!</h3>
+	{% for each in others %}
+	{% if each.user.id != request.session.user_id %}
+	<form action="{% url 'join' %}" method="POST">
+		{% csrf_token %}
+		{{each.user.name}}: {{each.destination}}
+		<input type="hidden" name="plan_id" value="{{each.id}}">
+		<input type="submit" value="Ok!"></input>	
+	</form>
+	{% endif %}
+	{% endfor %}
+
+
+</body>
+</html>

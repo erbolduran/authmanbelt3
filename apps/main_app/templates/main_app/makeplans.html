@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Make Plans!</title>
+</head>
+<body>
+	<h1>Make Your Plans!</h1>
+    <form action="{% url 'plans' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <input type="text" name="destination">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" name="description">
+        </div>            
+        <div class="form-group">
+            <label for="startdate">Start date</label>
+            <input type="text" name="startdate">
+        </div>
+        <div class="form-group">
+            <label for="enddate">End date</label>
+            <input type="text" name="enddate">
+        </div>
+        <input type="submit" value='Submit'>
+    </form>
+</body>
+</html>
+
